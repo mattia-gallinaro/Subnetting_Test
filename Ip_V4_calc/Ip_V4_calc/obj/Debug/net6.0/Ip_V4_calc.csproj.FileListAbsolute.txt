@@ -1,0 +1,5 @@
+C:\Users\galli\source\repos\Ip_V4_calc\Ip_V4_calc\obj\Debug\net6.0\Ip_V4_calc.csproj.AssemblyReference.cache
+C:\Users\galli\source\repos\Ip_V4_calc\Ip_V4_calc\obj\Debug\net6.0\Ip_V4_calc.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\galli\source\repos\Ip_V4_calc\Ip_V4_calc\obj\Debug\net6.0\Ip_V4_calc.AssemblyInfoInputs.cache
+C:\Users\galli\source\repos\Ip_V4_calc\Ip_V4_calc\obj\Debug\net6.0\Ip_V4_calc.AssemblyInfo.cs
+C:\Users\galli\source\repos\Ip_V4_calc\Ip_V4_calc\obj\Debug\net6.0\Ip_V4_calc.csproj.CoreCompileInputs.cache
