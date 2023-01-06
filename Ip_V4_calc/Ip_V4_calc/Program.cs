@@ -41,11 +41,18 @@ do
 ip.SetSubnet_Mask(addr);
 
 //ip.Set_CIDR(23);
+byte[][] result = new byte[2][];
 
 Console.WriteLine(ip.Get_CIDR());
+Console.WriteLine(ip.GetIP_addrbool());
 Console.WriteLine(String.Join(".", ip.GetSubnetMask()));
 Console.WriteLine(String.Join(".", ip.GetNetwork_Address()));
 Console.WriteLine(String.Join(".", ip.GetBroadcast()));
 Console.WriteLine(String.Join(".", ip.Get_WildCardMask()));
 Console.WriteLine(String.Join(".", ip.GetFirstHostIP()));
 Console.WriteLine(String.Join(".", ip.GetLastHostIp()));
+Console.WriteLine(ip.GetTotalNumberHost());
+
+result = ip.GetNumberUsableHost();
+
+Console.WriteLine(String.Join(".", result[0]) + " --- " + String.Join(".", result[1]));

@@ -58,9 +58,13 @@ class IP_V4
         return check;
     }
 
-    public bool[,] GetIP_addrbool()//finire
+    public string GetIP_addrbool()
     {
-        bool[,] ip_v4_bool = new bool[4, 8];
+        string ip_v4_bool = "";
+        for(int i = 0; i < 4; i++)
+        {
+           ip_v4_bool += Convert.ToString(ipv4_adrr[i], 2).PadLeft(8, '0') + ".";
+        }
         return ip_v4_bool;
     }
 
@@ -115,13 +119,13 @@ class IP_V4
     {
         return Math.Pow(2, (32 - this.Get_CIDR())) -2;
     }
-    /*public byte[,] GetNumberUsableHost() finire
+    public byte[][] GetNumberUsableHost()
     {
-        byte[,] addresses = new byte[2,4];
+        byte[][] addresses = new byte[2][];
         addresses[0] = this.GetFirstHostIP();
-        addresses[1] = this.GetLast();
+        addresses[1] = this.GetLastHostIp();
         return addresses;
-    }*/
+    }
     public int Get_CIDR()
     {
         int total = 0;
