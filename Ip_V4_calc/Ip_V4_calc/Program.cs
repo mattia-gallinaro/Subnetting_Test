@@ -11,13 +11,13 @@ for(int i = 0; i < 4; i++)
     string s = "";
     do
     {
-        Console.WriteLine("Inserisci un byte {0}", i);
+        Console.WriteLine("Inserisci il {0}^ byte dell'indirizzo ip", i + 1 );
         s = Convert.ToString(Console.ReadLine());
     } while (!Byte.TryParse(s, out value));
     addr[i] = value;
 }
 
-ip.Set_IPV4(addr);
+ip.SetIp_address(addr);
 
 addr = new byte[4];
 bool flag = false;
@@ -30,7 +30,7 @@ do
         flag = false;
         do
         {
-            Console.WriteLine("Inserisci un byte {0}", i);
+            Console.WriteLine("Inserisci il {0}^ byte della subnet mask", i +1);
             s = Convert.ToString(Console.ReadLine());
             flag = Byte.TryParse(s, out value);
         } while(!flag || !ip.checkSingleByte(value));
@@ -38,10 +38,14 @@ do
     }
 }while(ip.checkSubnetMask(addr));
 
-ip.SetSubnetMask(addr);
+ip.SetSubnet_Mask(addr);
+
+//ip.Set_CIDR(23);
 
 Console.WriteLine(ip.Get_CIDR());
-
-ip.Set_CIDR(23);
-
-//Console.WriteLine(Convert.ToString(ip.GetSubnetMask()));
+Console.WriteLine(String.Join(".", ip.GetSubnetMask()));
+Console.WriteLine(String.Join(".", ip.GetNetwork_Address()));
+Console.WriteLine(String.Join(".", ip.GetBroadcast()));
+Console.WriteLine(String.Join(".", ip.Get_WildCardMask()));
+Console.WriteLine(String.Join(".", ip.GetFirstHostIP()));
+Console.WriteLine(String.Join(".", ip.GetLastHostIp()));

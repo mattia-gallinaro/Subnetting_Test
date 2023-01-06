@@ -25,11 +25,11 @@ class IP_V4
         return sub_mask;
     }
 
-    public void SetSubnetMask(byte[] sm)
+    public void SetSubnet_Mask(byte[] sm)
     {
         this.sub_mask = sm;
     }
-    public void Set_IPV4(byte[] ipv4_inserted)
+    public void SetIp_address(byte[] ipv4_inserted)
     {
         this.ipv4_adrr = ipv4_inserted;
     }
@@ -58,11 +58,7 @@ class IP_V4
         return check;
     }
 
-
-    //2 modi
-    //primo: fare and con la subnet mask
-    //secondo: trovare il cidr, verificare i bit posti ad 1 fino a quando non si raggiunge il cidr
-    public bool[,] GetIP_addrbool()//per ritornare il bool
+    public bool[,] GetIP_addrbool()//finire
     {
         bool[,] ip_v4_bool = new bool[4, 8];
         return ip_v4_bool;
@@ -71,25 +67,61 @@ class IP_V4
     public byte[] GetFirstHostIP()
     {
         byte[] ip_v4_first = new byte[4];
-        foreach (byte group in ipv4_adrr)
-        {
-            //just add one from network address if it insn't the last one
-        }
+        ip_v4_first = this.GetNetwork_Address();
+        ip_v4_first[3] += 1;
         return ip_v4_first;
     }
 
-    public byte[] GetNetworkAddress()
+    public byte[] GetNetwork_Address()
     {
         byte[] bytes = new byte[4];
-        int i = 0;
-        foreach (byte single in bytes)
+        for(int i = 0; i < 4; i++)
         {
-            //bytes[i]
+            bytes[i] = (byte)(ipv4_adrr[i] & sub_mask[i]); 
         }
 
         return bytes;
     }
 
+    public byte[] GetBroadcast()
+    {
+        byte[] broadcast_addr = new byte[4];
+        byte[] network_addr= this.GetNetwork_Address();
+        byte[] wildcard= this.Get_WildCardMask();
+        for (int i = 0; i < 4; i++)
+        {
+            broadcast_addr[i] = (byte)(network_addr[i] | wildcard[i]);
+        }
+        return broadcast_addr;
+    }
+    public byte[] GetLastHostIp()
+    {
+        byte[] bytes = new byte[4];
+        bytes = this.GetBroadcast();
+        bytes[3] -= 1;
+        return bytes;
+    }
+    public byte[] Get_WildCardMask()
+    {
+        byte[] wild_card = new byte[4];
+
+        for(int i = 0;  i < 4; i++)
+        {
+            wild_card[i] = (byte)(255 - (int)sub_mask[i]);
+        }
+        return wild_card;
+    }
+    public double GetTotalNumberHost()
+    {
+        return Math.Pow(2, (32 - this.Get_CIDR())) -2;
+    }
+    /*public byte[,] GetNumberUsableHost() finire
+    {
+        byte[,] addresses = new byte[2,4];
+        addresses[0] = this.GetFirstHostIP();
+        addresses[1] = this.GetLast();
+        return addresses;
+    }*/
     public int Get_CIDR()
     {
         int total = 0;
@@ -118,24 +150,26 @@ class IP_V4
 
     public void Set_CIDR(int bits)
     {
-        string final_byte = "";
-        for (int i = 0; i < bits / 8; i++)//conto il numero di byte
+        double sig_byte = 0;
+        for (int i = 0; i < 4; i++)//conto il numero di byte
         {
             if ((bits - (i * 8)) > 8)
             {
-                sub_mask[i] = 255;
-                Console.WriteLine("entered");
+                sub_mask[i] |= 255;
+            }
+            else if (bits - (i * 8) > 0)
+            {
+                
+                for (int j = 7; j >= 8- (bits - (i * 8)); j--)
+                {
+                    sig_byte += Math.Pow(2, j);
+                }
+                sub_mask[i] = Convert.ToByte(sig_byte);
+                Console.WriteLine(sub_mask[i]);
             }
             else
             {
-
-                for (int j = 0; j < (bits - (i * 8)); j++)
-                {
-                    final_byte += "1";
-                }
-                final_byte.PadRight(8, '0');
-                Console.WriteLine(final_byte);
-                sub_mask[i] = Convert.ToByte(final_byte);
+                sub_mask[i] |= 0;
             }
         }
     }
