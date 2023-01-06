@@ -6,5 +6,5 @@ build_property.ProjectTypeGuids =
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
-build_property.RootNamespace = Ip_V4_calc
-build_property.ProjectDir = C:\Users\galli\source\repos\Ip_V4_calc\Ip_V4_calc\
+build_property.RootNamespace = IP_V4_calc
+build_property.ProjectDir = C:\Users\galli\OneDrive\Documenti\GitHub\Subnetting_Test\IP_V4_calc\IP_V4_calc\

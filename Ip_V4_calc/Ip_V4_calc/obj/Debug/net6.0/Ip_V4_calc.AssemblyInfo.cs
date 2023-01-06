@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Ip_V4_calc")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("IP_V4_calc")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("Ip_V4_calc")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Ip_V4_calc")]
+[assembly: System.Reflection.AssemblyProductAttribute("IP_V4_calc")]
+[assembly: System.Reflection.AssemblyTitleAttribute("IP_V4_calc")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Generato dalla classe WriteCodeFragment di MSBuild.
